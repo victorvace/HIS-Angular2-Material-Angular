@@ -1,0 +1,26 @@
+<mat-card class="login-card">
+  <mat-card-header>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Medical app access</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="form">
+      <mat-form-field class="full-width">
+        <input matInput type="email" placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Por favor, introduce una dirección de correo electrónico válida
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email <strong>requerido.</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'">
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" routerLink="/dashboard">Acceder</button>
+  </mat-card-actions>
+</mat-card>
