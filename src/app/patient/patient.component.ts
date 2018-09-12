@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { StateService } from '../state.service';
 
 @Component({
   selector: 'app-patient',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PatientComponent implements OnInit {
 
-  constructor() { }
+  datos: any;
+  id: string;
+
+  constructor(
+    private api: ApiService,
+    private router: Router,
+    private state: StateService,
+    private route: ActivatedRoute
+  ) {
+    this.id = this.route.snapshot.paramMap.get('id');
+  }
 
   ngOnInit() {
+    this. datos = this.api.getUser(this.id);
   }
 
 }

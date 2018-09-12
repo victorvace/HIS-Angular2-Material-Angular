@@ -1,15 +1,13 @@
-.cuerpo {
+  :host() {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100vh;
-    background: #f4f4ee;
-    padding: 2em;
-    min-width: 300px;
-    max-width: 1300px;
-    margin: 0 auto 0 auto;
   }
-  
+
   .login-card {
-    margin: 0 auto 0 auto;
-    max-width: 450px;
+    min-width: 300px;
+    width: 400px;
     max-height: 500px;
   }
   
@@ -23,11 +21,6 @@
   
   .full-width {
     width: 100%;
-  }
-
-  .container {
-    display: flex;
-    flex-direction: column;
   }
   
   .right-align {

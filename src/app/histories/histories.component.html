@@ -1,3 +1,15 @@
-<p>
-  histories works!
-</p>
+<h2>Mis historiales de pacientes</h2>
+<mat-nav-list *ngFor="let historial of listHistoriales">
+    <div *ngFor="let patient of listaUsuarios">
+        <div *ngFor="let doctor of listaDoctores">
+            <div *ngIf="historial.userId===patient.uid">
+                <div *ngIf="historial.doctorId===doctor.uid">
+                    <mat-list-item role="listitem" [routerLink]='["/history", historial.userId ]'>
+                        <h4 mat-line>Nombre paciente: {{ patient.name }}</h4>
+                        <p mat-line>Nombre doctor: {{ doctor.name }}</p>
+                    </mat-list-item>
+                </div>
+            </div>
+        </div>
+    </div>
+</mat-nav-list>

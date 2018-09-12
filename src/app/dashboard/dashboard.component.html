@@ -1,24 +1,28 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>HIS Dashboard</span>
+    <span class="spacer"></span>
+    <button mat-icon-button color="warn" (click)="logout()">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
 <div class="grid-container">
-  <h1 class="mat-h1">Dashboard</h1>
-  <mat-grid-list cols="2" rowHeight="350px">
-    <mat-grid-tile *ngFor="let card of cards | async" [colspan]="card.cols" [rowspan]="card.rows">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            {{card.title}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-  </mat-grid-list>
+  <mat-list>
+    <mat-list-item *ngIf="role === 'admin' || role === 'technical'">
+      <button mat-raised-button color="primary" routerLink="/newUser">Crear Usuario</button>
+    </mat-list-item>
+    <mat-list-item *ngIf="role === 'admin' || role === 'doctor'">
+      <button mat-raised-button color="primary" routerLink="/patients">Listado pacientes</button>
+    </mat-list-item>
+    <mat-list-item *ngIf="role === 'admin' || role === 'doctor'">
+      <button mat-raised-button color="primary" routerLink="/histories">Listado historiales</button>
+    </mat-list-item>
+    <mat-list-item *ngIf="role === 'admin' || role === 'patient'">
+      <button mat-raised-button color="primary" routerLink="/history/{{uid}}">Historial</button>
+    </mat-list-item>
+    <mat-list-item *ngIf="role === 'admin' || role === 'patient'">
+      <button mat-raised-button color="primary" routerLink="/patient/{{uid}}">Ficha</button>
+    </mat-list-item>
+  </mat-list>
 </div>

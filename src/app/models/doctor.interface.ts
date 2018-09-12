@@ -1,5 +1,5 @@
-import { User } from './user.interface'
+import { User } from './user.interface';
 
-export interface Doctor extends User{
-    role: 'doctor'
+export interface Doctor extends User {
+    role: 'doctor';
 }

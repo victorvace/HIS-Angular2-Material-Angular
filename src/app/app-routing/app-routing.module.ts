@@ -2,54 +2,62 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from '../app.component';
-import { DHistoryComponent } from '../d-history/d-history.component';
-import { DPatientComponent } from '../d-patient/d-patient.component';
+
+import { LoginComponent } from '../login/login.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { HistoriesComponent } from '../histories/histories.component';
 import { HistoryComponent } from '../history/history.component';
-import { LoginComponent } from '../login/login.component';
 import { NewUserComponent } from '../new-user/new-user.component';
 import { PatientComponent } from '../patient/patient.component';
 import { PatientsComponent } from '../patients/patients.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
+import { AuthGuard } from '../auth.guard';
+import { HistoriesGuard } from '../histories.guard';
+import { TechnicalGuard } from '../technical.guard';
+import { HistoryGuard } from '../history.guard';
+import { PatientGuard } from '../patient.guard';
+import { PatientsGuard } from '../patients.guard';
+
 
 const routes: Routes = [ {
         path: '',
-        component: LoginComponent,
+        redirectTo: 'login',
+        pathMatch: 'full'
     }, {
         path: 'login',
-        component: LoginComponent,
+        component: LoginComponent
     }, {
         path: 'dashboard',
         component: DashboardComponent,
-    }, {
-        path: 'dHistory',
-        component: DHistoryComponent,
-    }, {
-        path: 'dPatient',
-        component: DPatientComponent,
+        canActivate: [AuthGuard]
     }, {
         path: 'histories',
         component: HistoriesComponent,
-    }, {
-        path: 'history/:id',
-        component: HistoryComponent,
+        canActivate: [HistoriesGuard]
     }, {
         path: 'newUser',
         component: NewUserComponent,
+        canActivate: [TechnicalGuard]
+    }, {
+        path: 'history/:id',
+        component: HistoryComponent,
+        canActivate: [HistoryGuard]
     }, {
         path: 'patient/:id',
         component: PatientComponent,
+        canActivate: [PatientGuard]
     }, {
         path: 'patients',
         component: PatientsComponent,
+        canActivate: [PatientsGuard]
     }, {
         path: '**',
-        component: NotFoundComponent
+        component: NotFoundComponent,
+        canActivate: [AuthGuard]
     }
 ];
 
-@NgModule( {
+@NgModule({
     imports: [
         CommonModule,
         RouterModule.forRoot( routes )
@@ -58,5 +66,5 @@ const routes: Routes = [ {
         RouterModule
     ],
     declarations: []
-} )
+})
 export class AppRoutingModule {}

@@ -1,3 +1,11 @@
-<p>
-  patient works!
-</p>
+<mat-card class="card, mat-typography">
+    <mat-card-header>
+        <mat-card-title><h1>{{ datos.name }}</h1></mat-card-title>
+        <mat-card-subtitle><h2>{{ datos.surname }}</h2></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <h4>Identificador único: {{ datos.uid }}</h4>
+        <h4>Documento nacional de identidad: {{ datos.dni }}</h4>
+        <h4>Correo electrónico: {{ datos.email }}</h4>
+    </mat-card-content>
+</mat-card>
