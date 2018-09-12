@@ -11,12 +11,12 @@ import { NewUserComponent } from '../new-user/new-user.component';
 import { PatientComponent } from '../patient/patient.component';
 import { PatientsComponent } from '../patients/patients.component';
 import { NotFoundComponent } from '../not-found/not-found.component';
-import { AuthGuard } from '../auth.guard';
-import { HistoriesGuard } from '../histories.guard';
-import { TechnicalGuard } from '../technical.guard';
-import { HistoryGuard } from '../history.guard';
-import { PatientGuard } from '../patient.guard';
-import { PatientsGuard } from '../patients.guard';
+import { AuthGuard } from '../guards/auth.guard';
+import { HistoriesGuard } from '../guards/histories.guard';
+import { TechnicalGuard } from '../guards/technical.guard';
+import { HistoryGuard } from '../guards/history.guard';
+import { PatientGuard } from '../guards/patient.guard';
+import { PatientsGuard } from '../guards/patients.guard';
 
 
 const routes: Routes = [ {
