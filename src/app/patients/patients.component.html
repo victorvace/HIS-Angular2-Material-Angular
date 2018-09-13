@@ -1,4 +1,4 @@
-<app-menu titulo="Pacientes"></app-menu>
+<app-menu titulo="Listado de pacientes"></app-menu>
 <h2>Mis pacientes</h2>
 <mat-nav-list *ngFor="let paciente of datos">
     <mat-list-item role = "listitem" [routerLink]='["/patient", paciente.uid]'>
