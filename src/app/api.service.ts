@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { User } from '../app/models/user.interface';
 import { StateService } from './state.service';
 import { History } from './models/history.interface';
@@ -11,7 +11,7 @@ export class ApiService {
 
   newUser: User;
 
-  users: Array < User > = [
+  users: Array < User > = JSON.parse(localStorage.getItem('usersArray')) || [
     { role: 'admin', uid: '000', name: 'Manolo', surname: 'Fernandez', dni: '123456789K', email: 'manolo@email.com', password: '0' },
     { role: 'technical', uid: '001', name: 'Juan Elias', surname: 'Guerra', dni: '123456789N', email: 'jelias@email.com', password: '1' },
     { role: 'doctor', uid: '010', name: 'Víctor', surname: 'Vanaclocha', dni: '123456789L', email: 'victor@email.com', password: '10' },
@@ -21,9 +21,7 @@ export class ApiService {
     { role: 'patient', uid: '102', name: 'Javi', surname: 'Olmo', dni: '123456789D', email: 'javi@email.com', password: '102' }
   ];
 
-// JSON.parse(localstorage.getItem('string')) || ARRAY
-
-  records: Array < History > = [
+  records: Array < History > = JSON.parse(localStorage.getItem('recordsArray')) || [
     { userId: '000', doctorId: '010', log: ['Enfermedad1', 'Enfermedad2', 'Enfermedad3', 'Enfermedad4']},
     { userId: '100', doctorId: '010', log: ['Enfermedad1', 'Enfermedad2', 'Enfermedad3', 'Enfermedad4']},
     { userId: '101', doctorId: '010', log: ['Enfermedad1', 'Enfermedad2']},
@@ -35,9 +33,8 @@ export class ApiService {
   constructor( private state: StateService) { }
 
   // Login
-
   public login(email, pass) {
-    const userObject = this.users.find( item => item.email === email && item.password === pass);
+    const userObject = this.users.find( item => item.email === email && item.password === pass );
 
     if ( userObject ) {
       this.state.login( userObject );
@@ -51,7 +48,15 @@ export class ApiService {
 
   // User
   public addNewUser(newUser) {
-    return null;
+      newUser.uid = Math.random().toString(36).substr(2, 9);
+      this.users.push(newUser);
+      this.saveData();
+  }
+  saveData(): any {
+      localStorage.setItem('usersArray', JSON.stringify(this.users));
+      console.log(this.users);
+      localStorage.setItem('recordsArray', JSON.stringify(this.records));
+      console.log(this.records);
   }
 
   public getUsers() {
@@ -67,105 +72,21 @@ export class ApiService {
     return this.users.filter( item => item.role === 'doctor' );
   }
 
-  public getMedico(id) {
-    return null;
-  }
-
-  public createMedico() {
-    return null;
-  }
-
-  public setMedico(id) {
-    return null;
-  }
-
-  public deleteMedico(id) {
-    return null;
-  }
-
-    // Técnico
-  public getListTecnico() {
-    return null;
-  }
-
-  public getTecnico(id) {
-    return null;
-  }
-
-  public createTecnico() {
-    return null;
-  }
-
-  public setTecnico(id) {
-    return null;
-  }
-
-  public deleteTecnico(id) {
-    return null;
-  }
-
   // Paciente
   public getListPacientes() {
-    return this.users.filter( item => item.role === 'patient');
+    return this.users.filter( item => item.role === 'patient' );
   }
 
   public getPaciente(id) {
     return this.users.find( item => item.uid === id);
   }
 
-  public createPaciente() {
-    return null;
-  }
-
-  public setPaciente(id) {
-    return null;
-  }
-
-  public deletePaciente(id) {
-    return null;
-  }
-
-  //  Citas
-  public getListCitas() {
-    return null;
-  }
-
-  public getCita() {
-    return null;
-  }
-
-  public createCita(uid) {
-    return null;
-  }
-
-  public setCita() {
-    return null;
-  }
-
-  public deleteCita() {
-    return null;
-  }
-
   // Historial
   public getListHistoriales(id) {
-    return this.records.filter( item => item.doctorId === id);
+    return this.records.filter( item => item.doctorId === id );
   }
 
   public getHistorial(id) {
     return this.records.find( item => item.userId = id );
   }
-
-  public createHistorial() {
-    return null;
-  }
-
-  public setHistorial() {
-    return null;
-  }
-
-  public deleteHistorial() {
-    return null;
-  }
-
 }
-

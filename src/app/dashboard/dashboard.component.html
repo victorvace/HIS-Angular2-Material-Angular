@@ -1,12 +1,4 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>HIS Dashboard</span>
-    <span class="spacer"></span>
-    <button mat-icon-button color="warn" (click)="logout()">
-      <mat-icon>power_settings_new</mat-icon>
-    </button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<app-menu titulo="Dashboard"></app-menu>
 <div class="grid-container">
   <mat-list>
     <mat-list-item *ngIf="role === 'admin' || role === 'technical'">

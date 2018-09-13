@@ -3,6 +3,7 @@ import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { StateService } from '../state.service';
 import { User } from '../models/user.interface';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-patients',

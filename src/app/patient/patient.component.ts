@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { StateService } from '../state.service';
+import { MenuComponent } from '../menu/menu.component';
 
 @Component({
   selector: 'app-patient',

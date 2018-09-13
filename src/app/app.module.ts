@@ -11,8 +11,9 @@ import { PatientsComponent } from './patients/patients.component';
 import { HistoriesComponent } from './histories/histories.component';
 import { HistoryComponent } from './history/history.component';
 import { NewUserComponent } from './new-user/new-user.component';
-
+import { MenuComponent } from './menu/menu.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
 import { LayoutModule } from '@angular/cdk/layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule, MatSelectModule, MatSortModule, MatProgressSpinnerModule } from '@angular/material';
@@ -44,7 +45,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     NewUserComponent,
     DashboardComponent,
     LoginComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,

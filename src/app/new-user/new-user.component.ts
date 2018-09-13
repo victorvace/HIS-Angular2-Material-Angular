@@ -1,10 +1,10 @@
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { StateService } from '../state.service';
-import { User } from '../models/user.interface';
 import { FormControl, Validators, FormsModule, ReactiveFormsModule, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
+import { MenuComponent } from '../menu/menu.component';
 
 @NgModule({
   imports: [
@@ -26,12 +26,16 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./new-user.component.css']
 })
 export class NewUserComponent {
-  newUser: User;
+  newUser = {
+    role: '',
+    uid: '',
+    name: '',
+    surname: '',
+    dni: '',
+    email: '',
+    password: ''
+  };
 
-  role: null | 'admin' | 'patient' | 'doctor' | 'technical';
-  name: string;
-  surname: string;
-  dni: string;
   password: string;
   password2: string;
   hide = true;
@@ -48,12 +52,13 @@ export class NewUserComponent {
     private state: StateService
   ) {
     const user = state.isLogged();
-    this.role = user.role;
   }
-  rolControl = new FormControl('', [Validators.required]);
+
   options: string[] = ['patient', 'doctor', 'technical'];
 
   matcher = new MyErrorStateMatcher();
+
+  rolControl = new FormControl('', [Validators.required]);
 
   emailFormControl = new FormControl('', [
     Validators.required,
@@ -67,21 +72,26 @@ export class NewUserComponent {
   }
 
   createUser() {
-    this.newUser.role = this.role;
-    this.newUser.name = this.name;
-    this.newUser.surname = this.surname;
-    this.newUser.dni = this.dni;
-    this.newUser.password = this.password;
-    this.api.addNewUser(this.newUser);
-    console.log('Guardado');
+    this.newUser.role = this.rolControl.value;
+    this.newUser.email = this.emailFormControl.value;
+    if (this.password === this.password2) {
+      this.newUser.password = this.password;
+    } else {
+      console.log('error');
+    }
     console.log(this.newUser);
+
+    this.api.addNewUser(this.newUser);
   }
 
   reset() {
-    this.role = null;
-    this.name = '';
-    this.surname = '';
+    this.newUser.role = null;
+    this.newUser.name = '';
+    this.newUser.surname = '';
+    this.newUser.dni = '';
+    this.newUser.email = '';
     this.emailFormControl.setValue('');
+    this.newUser.password = '';
     this.password = '';
     this.password2 = '';
     this.hide = true;

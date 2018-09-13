@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { State } from './models/state.interface';
 
-
 @Injectable({
   providedIn: 'root'
 })
 export class StateService {
 
-  state: State = {
+  state: State = JSON.parse(localStorage.getItem('state')) || {
     auth: null,            // Aquí se guarda el usuario logeado
   };
 
@@ -15,9 +14,14 @@ export class StateService {
 
   login(user) {
     this.state.auth = user;
+    this.saveState();
+  }
+  saveState() {
+    localStorage.setItem('state', JSON.stringify(this.state));
   }
 
   logout() {
+    localStorage.clear();
     this.state.auth = null;
   }
 

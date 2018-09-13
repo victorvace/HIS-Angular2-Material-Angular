@@ -1,15 +1,8 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
-import { Breakpoints, BreakpointState, BreakpointObserver } from '@angular/cdk/layout';
 import { ApiService } from '../api.service';
 import { Router } from '@angular/router';
 import { StateService } from '../state.service';
-import { User } from '../models/user.interface';
 
-import { MatListModule } from '@angular/material/list';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,15 +19,8 @@ uid: string;
     private router: Router,
     private state: StateService
   ) {
-    this.role = state.getRole();
-    this.uid = state.getUid();
+    const user = state.isLogged();
+    this.uid = user.uid;
+    this.role = user.role;
   }
-
-
-// common
-  logout() {
-    this.api.logout();
-    this.router.navigate(['']);
-  }
-
 }
