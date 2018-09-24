@@ -21,7 +21,7 @@ Actividad didáctica consistente en la creación de un frontend con angular simu
 
 ## Api
 
-Simular la interacción con un backend mediante un servicio fake (mock) 
+Simulada la interacción con un backend mediante un servicio fake (mock) 
 
 - login()
 
@@ -54,3 +54,12 @@ Simular la interacción con un backend mediante un servicio fake (mock)
     - /patient/:id  sólo puede ver su ficha
     - /history/:id  sólo puede ver su historial
 
+## Datos de ejemplo (Usuarios de login)
+
+- { role: 'admin', uid: '000', name: 'Manolo', surname: 'Fernandez', dni: '123456789K', email: 'manolo@email.com', password: '0' },
+- { role: 'technical', uid: '001', name: 'Juan Elias', surname: 'Guerra', dni: '123456789N', email: 'jelias@email.com', password: '1' },
+- { role: 'doctor', uid: '010', name: 'Víctor', surname: 'Vanaclocha', dni: '123456789L', email: 'victor@email.com', password: '10' },
+- { role: 'doctor', uid: '011', name: 'Kike', surname: 'Martinez', dni: '123456789M', email: 'kike@email.com', password: '11' },
+- { role: 'patient', uid: '100', name: 'Juan', surname: 'Garnica', dni: '123456789G', email: 'juan@email.com', password: '100' },
+- { role: 'patient', uid: '101', name: 'Xavi', surname: 'Rodriguez', dni: '123456789C', email: 'xavi@email.com', password: '101' },
+- { role: 'patient', uid: '102', name: 'Javi', surname: 'Olmo', dni: '123456789D', email: 'javi@email.com', password: '102' }
